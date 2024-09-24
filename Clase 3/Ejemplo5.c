@@ -7,7 +7,7 @@ double celsius_a_fahrenheit(double celsius) {
 
 int main() {
     double celsius = 25;
-    double fahrenheit = celsius_a_fahrenheit(celsius);
+    double fahrenheit = celsisus_a_fahrenheit(celsius);
     printf("%f grados Celsius son %f grados Fahrenheit\n", celsius, fahrenheit);
     return 0;
 }

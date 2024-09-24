@@ -2,7 +2,7 @@
 
 /*
 
-El comercio HuevosK necesita un sistema para gestionar su inventario de huevos. 
+El comercio HuevosOK necesita un sistema para gestionar su inventario de huevos. 
 Cada vez que se realiza una venta, el sistema debe disminuir la cantidad en stock. 
 Si la cantidad en stock llega a cero, el sistema debe alertar al administrador. 
 También debe permitir añadir huevos al inventario cuando se repongan.
