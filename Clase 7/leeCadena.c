@@ -7,7 +7,7 @@ void leeCad(tCadena, int);
 
 int main() {
     tCadena cadena;
-    leeCad(cadena,9);
+    leeCad(cadena,11);
     printf("La cadena ingresada es: %s\n", cadena);
     return 0;
 }
