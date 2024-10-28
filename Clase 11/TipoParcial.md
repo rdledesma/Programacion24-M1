@@ -1,9 +1,9 @@
-#Ejercicio tipo parcial
+# Ejercicio tipo parcial
 
-Una pareja de conejos que,
-  a partir del segundo mes de vida,
-  tiene una nueva pareja de conejos cada mes. 
- Cada nueva pareja repite este ciclo desde 
- el momento en que cumple dos meses de edad.
+Una pareja de conejos que,  
+a partir del segundo mes de vida,  
+tiene una nueva pareja de conejos cada mes.  
+Cada nueva pareja repite este ciclo desde  
+el momento en que cumple dos meses de edad.
 
- Genear una funcion que modele el crecimiento poblacional dada una pareja de conejos.
+Generar una función que modele el crecimiento poblacional dada una pareja de conejos.
