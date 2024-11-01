@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "cadena.h": "c",
+        "libro.h": "c"
+    }
+}
