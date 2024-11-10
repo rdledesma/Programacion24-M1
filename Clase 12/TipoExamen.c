@@ -7,4 +7,3 @@ int fun(int x, int e){
 }  
 
 
-x

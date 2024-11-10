@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "tad_cadena.h": "c",
+        "string.h": "c"
+    }
+}
