@@ -16,9 +16,11 @@ void cargarLista(TPtr*, int);
 void agregarCabecera(TPtr*, int);
 void agregarFin(TPtr*, int);
 void muestraLista(TPtr);
-void añadirEnPosicionP(TPtr*, int, int);
+void aniadirEnPosicionP(TPtr*, int, int);
 void eliminarPares(TPtr*);
-void añadirCerosPrimos(TPtr*);
+void aniadirCerosPrimos(TPtr*);
+void aniadirCerosPrimos2(TPtr*);
+
 void eliminarEnPosicionP(TPtr*, int);
 bool esPrimo(int);
 
@@ -26,7 +28,7 @@ int main() {
     srand(time(NULL)); 
     TPtr lista = crearLista();
 
-    int n = 30;
+    int n = 10;
     cargarLista(&lista, n);
 
     printf("Lista inicial:\n");
@@ -40,7 +42,7 @@ int main() {
     printf("\nLista después de agregar 20 al final:\n");
     muestraLista(lista);
 
-    añadirEnPosicionP(&lista, 9, 3);
+    aniadirEnPosicionP(&lista, 9, 3);
     printf("\nLista después de añadir 9 en la posición 3:\n");
     muestraLista(lista);
 
@@ -48,7 +50,7 @@ int main() {
     printf("\nLista después de eliminar los elementos pares:\n");
     muestraLista(lista);
 
-    añadirCerosPrimos(&lista);
+    aniadirCerosPrimos2(&lista);
     printf("\nLista después de añadir ceros alrededor de los números primos:\n");
     muestraLista(lista);
 
@@ -121,7 +123,7 @@ void muestraLista(TPtr lista) {
 }
 
 // Función para añadir un valor en una posición específica (posición P)
-void añadirEnPosicionP(TPtr* lista, int valor, int posicion) {
+void aniadirEnPosicionP(TPtr* lista, int valor, int posicion) {
     TPtr nuevo = (TPtr)malloc(sizeof(TNodo));
     nuevo->dato = valor;
 
@@ -164,7 +166,7 @@ void eliminarPares(TPtr* lista) {
 }
 
 // Función para añadir ceros alrededor de números primos
-void añadirCerosPrimos(TPtr* lista) {
+void aniadirCerosPrimos(TPtr* lista) {
     TPtr actual = *lista;
     while (actual != NULL) {
         if (esPrimo(actual->dato)) {
@@ -194,6 +196,46 @@ void añadirCerosPrimos(TPtr* lista) {
         }
     }
 }
+
+
+// Función para añadir ceros alrededor de números primos Mejorada
+void aniadirCerosPrimos2(TPtr* lista) {
+    TPtr actual = *lista;
+    TPtr previo = NULL;  // Apuntador al nodo anterior
+
+    while (actual != NULL) {
+        if (esPrimo(actual->dato)) {
+            // Insertar un 0 antes del número primo
+            TPtr nuevoAntes = (TPtr)malloc(sizeof(TNodo));
+            nuevoAntes->dato = 0;
+            nuevoAntes->sig = actual;
+
+            // Si el nodo actual es el primero de la lista, actualizamos la cabeza
+            if (previo == NULL) {
+                *lista = nuevoAntes;
+            } else {
+                previo->sig = nuevoAntes;
+            }
+
+            // Ahora el nuevo nodo antes del primo es 'actual', no lo cambiamos de referencia.
+            previo = nuevoAntes;
+
+            // Insertar un 0 después del número primo
+            TPtr nuevoDespues = (TPtr)malloc(sizeof(TNodo));
+            nuevoDespues->dato = 0;
+            nuevoDespues->sig = actual->sig;
+            actual->sig = nuevoDespues;
+
+            // Avanzamos al siguiente nodo después del nuevo 0 insertado
+            actual = nuevoDespues->sig;  
+        } else {
+            // Si no es primo, avanzamos al siguiente nodo
+            previo = actual;
+            actual = actual->sig;
+        }
+    }
+}
+
 
 // Función para eliminar un elemento en una posición específica (posición P)
 void eliminarEnPosicionP(TPtr* lista, int posicion) {
