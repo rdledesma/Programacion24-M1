@@ -138,3 +138,62 @@ void Buscar_Estudiante(TPtr lista, const char* nombre) {
         printf("El estudiante '%s' no se encuentra en la lista.\n", nombre);
     }
 }
+
+
+// Función para eliminar un estudiante de la lista por nombre
+void Eliminar_Estudiante(TPtr* lista, const char* nombre) {
+    TPtr actual = *lista;
+    TPtr anterior = NULL;
+    
+    // Buscar el nodo con el nombre del estudiante
+    while (actual != NULL && strcmp(actual->estudiante.nombre, nombre) != 0) {
+        anterior = actual;
+        actual = actual->sig;
+    }
+    
+    // Si el estudiante no se encuentra
+    if (actual == NULL) {
+        printf("El estudiante '%s' no se encuentra en la lista.\n", nombre);
+        return;
+    }
+    
+    // Si el estudiante es el primer nodo de la lista
+    if (anterior == NULL) {
+        *lista = actual->sig;
+    } else {
+        // Saltar el nodo actual
+        anterior->sig = actual->sig;
+    }
+    
+    // Liberar la memoria del nodo eliminado
+    free(actual);
+    printf("El estudiante '%s' ha sido eliminado de la lista.\n", nombre);
+}
+
+
+// Función para ordenar la lista de estudiantes por edad
+void Ordenar_Lista_Por_Edad(TPtr* lista) {
+    if (*lista == NULL) return;  // Si la lista está vacía no se hace nada
+
+    int intercambiado;
+    TPtr actual;
+    TPtr previo = NULL;  // Para controlar el límite en cada pasada
+    
+    do {
+        intercambiado = 0;
+        actual = *lista;
+        
+        while (actual->sig != previo) {
+            if (actual->estudiante.edad > actual->sig->estudiante.edad) {
+                // Intercambiar los datos de los estudiantes
+                TEstudiante temp = actual->estudiante;
+                actual->estudiante = actual->sig->estudiante;
+                actual->sig->estudiante = temp;
+                
+                intercambiado = 1;
+            }
+            actual = actual->sig;
+        }
+        previo = actual;  // Actualizar el límite
+    } while (intercambiado);
+}
